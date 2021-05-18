@@ -85,6 +85,14 @@ const Query = objectType({
       },
     })
 
+    // mock try
+    t.nullable.list.field('users', {
+      type: 'User',
+      resolve: (_parent, _args, context: Context) => {
+        return context.prisma.user.findMany({})
+      },
+    })
+
     t.list.field('draftsByUser', {
       type: 'Post',
       args: {
